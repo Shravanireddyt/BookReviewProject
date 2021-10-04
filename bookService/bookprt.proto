@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package bookService;
+
+enum statusType {
+	UNKNOWN = 0;
+	OP_SUCCESS = 1;
+	NOT_FOUND = 2;
+	DB_DOWN = 3;
+	DB_OPERATION_FAIL = 4;	
+}
+
+message book {
+    uint32 Id =1;
+    string name = 2;
+    repeated string author = 3;
+    string shortDesc = 4;
+}
+
+message addBookRequest{
+    book bookInfo = 1;
+}
+
+message addBookResponse {
+    int32 status = 1;  
+    string msg = 2;  
+}
+
+message getBookRequest{
+    int32 limit = 1;	
+}
+
+
+message getBookResponse {
+    statusType status = 1; 
+    repeated book books = 2;
+    string Msg = 3;
+ }
+
+message review {
+    string name = 2;
+    uint32 score = 3;
+    string text = 4;
+}
+
+message addReviewRequest{
+    uint32 Id =1;
+    review review = 2;
+}
+
+message addReviewResponse {
+    int32 status = 1;
+    string msg = 2;
+}
+
+message getReviewRequest {
+    uint32 bookId = 1;
+}
+
+message getReviewResponse {
+    statusType status = 1; 
+    repeated review reviews = 2;
+    string Msg = 3;
+}
+
+
+service bookService {
+    rpc AddBook( addBookRequest) returns ( addBookResponse) {};
+    rpc GetBook( getBookRequest) returns ( getBookResponse) {};
+    rpc AddReview( addReviewRequest) returns ( addReviewResponse) {};
+    rpc GetReview( getReviewRequest) returns ( getReviewResponse) {};    
+}
