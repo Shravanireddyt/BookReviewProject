@@ -13,8 +13,8 @@ curl --http2-prior-knowledge -H "Content-Type: application/json" -X POST --data 
 Get Book:
 curl --http2-prior-knowledge -H "Content-Type: application/json" -X GET http://localhost:6000/api/v1/book/{1}
 
-Add Review
+Add Review:
 curl --http2-prior-knowledge -H "Content-Type: application/json" -X POST --data @review.json http://localhost:6000/api/v1/review
 
-Get Review
+Get Review:
 curl --http2-prior-knowledge -H "Content-Type: application/json" -X GET http://localhost:6000/api/v1/review/{1}
